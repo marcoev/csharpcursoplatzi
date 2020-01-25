@@ -1,0 +1,11 @@
+/Users/marcoesparza/dev/platzi/csharp/Etapa1/bin/Debug/netcoreapp3.1/Etapa1
+/Users/marcoesparza/dev/platzi/csharp/Etapa1/bin/Debug/netcoreapp3.1/Etapa1.deps.json
+/Users/marcoesparza/dev/platzi/csharp/Etapa1/bin/Debug/netcoreapp3.1/Etapa1.runtimeconfig.json
+/Users/marcoesparza/dev/platzi/csharp/Etapa1/bin/Debug/netcoreapp3.1/Etapa1.runtimeconfig.dev.json
+/Users/marcoesparza/dev/platzi/csharp/Etapa1/bin/Debug/netcoreapp3.1/Etapa1.dll
+/Users/marcoesparza/dev/platzi/csharp/Etapa1/bin/Debug/netcoreapp3.1/Etapa1.pdb
+/Users/marcoesparza/dev/platzi/csharp/Etapa1/obj/Debug/netcoreapp3.1/Etapa1.csprojAssemblyReference.cache
+/Users/marcoesparza/dev/platzi/csharp/Etapa1/obj/Debug/netcoreapp3.1/Etapa1.AssemblyInfoInputs.cache
+/Users/marcoesparza/dev/platzi/csharp/Etapa1/obj/Debug/netcoreapp3.1/Etapa1.AssemblyInfo.cs
+/Users/marcoesparza/dev/platzi/csharp/Etapa1/obj/Debug/netcoreapp3.1/Etapa1.dll
+/Users/marcoesparza/dev/platzi/csharp/Etapa1/obj/Debug/netcoreapp3.1/Etapa1.pdb
