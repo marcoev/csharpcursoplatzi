@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace CoreEscuela.Entidades
@@ -5,7 +6,9 @@ namespace CoreEscuela.Entidades
     public class Escuela
     {
         string nombre;
-        public string Nombre { 
+        public string UniqueId { get; set; } = Guid.NewGuid().ToString();
+        public string Nombre
+        {
             get { return nombre; }
             set { nombre = value.ToUpper(); }
         }
@@ -19,14 +22,16 @@ namespace CoreEscuela.Entidades
 
         public Escuela(string nombre, int año) => (Nombre, AñoDeCreacion) = (nombre, año);
 
-        public Escuela(string nombre, int año, TiposEscuela tipo, string pais = "", string ciudad = ""){
+        public Escuela(string nombre, int año, TiposEscuela tipo, string pais = "", string ciudad = "")
+        {
             //Asignación por tuplas
             (Nombre, AñoDeCreacion) = (nombre, año);
             this.Pais = pais;
             this.Ciudad = ciudad;
         }
 
-        public override string ToString(){
+        public override string ToString()
+        {
             return $"Nombre: {Nombre}, Tipo: {TipoEscuela} \nPais: {Pais}, Ciudad: {Ciudad}";
         }
     }
