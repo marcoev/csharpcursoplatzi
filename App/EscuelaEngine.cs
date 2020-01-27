@@ -14,15 +14,15 @@ namespace CoreEscuela
 
         }
 
-        public List<ObjetoEscuelaBase> GetObjetosEscuela(
-            out int conteoEvaluaciones,
-            out int conteoCursos,
-            out int conteoAsignaturas,
-            out int conteoAlumnos,
-            bool traeEvaluaciones = true,
-            bool traeAlumnos = true,
-            bool traeAsignaturas = true,
-            bool traeCursos = true
+        public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuela(
+                out int conteoEvaluaciones,
+                out int conteoCursos,
+                out int conteoAsignaturas,
+                out int conteoAlumnos,
+                bool traeEvaluaciones = true,
+                bool traeAlumnos = true,
+                bool traeAsignaturas = true,
+                bool traeCursos = true
             )
         {
             conteoEvaluaciones = conteoCursos = conteoAsignaturas = conteoAlumnos = 0;
@@ -59,7 +59,22 @@ namespace CoreEscuela
                 }
             }
 
-            return listaObj;
+            return listaObj.AsReadOnly();
+        }        
+        public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuela(
+                out int conteoEvaluaciones
+            )
+        {
+            return GetObjetosEscuela (out conteoEvaluaciones, out int dummy, out dummy, out dummy);
+        }   
+        public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuela(
+            bool traeEvaluaciones = true,
+            bool traeAlumnos = true,
+            bool traeAsignaturas = true,
+            bool traeCursos = true
+            )
+        {
+            return GetObjetosEscuela (out int dummy, out dummy, out dummy, out dummy);
         }        
         public void Inicializar()
         {

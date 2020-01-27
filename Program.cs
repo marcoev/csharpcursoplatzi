@@ -15,14 +15,6 @@ namespace Etapa1
             var engine = new EscuelaEngine();
             engine.Inicializar();
             ImprimirCursosEscuela(engine.Escuela);
-            
-            int dummy = 0;
-            var listaObjetos = engine.GetObjetosEscuela(
-                out int conteoEvaluaciones,
-                out dummy,
-                out dummy,
-                out dummy
-            );
         }
 
         /// <SUMMARY>
