@@ -5,7 +5,7 @@ using CoreEscuela.Entidades;
 
 namespace CoreEscuela
 {
-    public class EscuelaEngine
+    public sealed class EscuelaEngine
     {
         public Escuela Escuela { get; set; }
 
@@ -40,12 +40,12 @@ namespace CoreEscuela
 
                         for (int i = 0; i < 5; i++)
                         {
-                            var ev = new Evaluacion
+                            var ev = new Evaluacion()
                             {
                                 Alumno = alumno,
                                 Asignatura = asignatura,
                                 Calificacion = (float)(5 * random.NextDouble()),
-                                Nombre = $"{asignatura.Nombre} - {exams[i+1]}"
+                                Nombre = $"{asignatura.Nombre} - {exams[i]}"
                             };
                             alumno.Evaluaciones.Add(ev);
                         }

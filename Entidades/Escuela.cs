@@ -3,16 +3,8 @@ using System.Collections.Generic;
 
 namespace CoreEscuela.Entidades
 {
-    public class Escuela
+    public class Escuela:ObjetoEscuelaBase
     {
-        string nombre;
-        public string UniqueId { get; set; } = Guid.NewGuid().ToString();
-        public string Nombre
-        {
-            get { return nombre; }
-            set { nombre = value.ToUpper(); }
-        }
-
         public int AñoDeCreacion { get; set; }
         public string Pais { get; set; }
         public string Ciudad { get; set; }
