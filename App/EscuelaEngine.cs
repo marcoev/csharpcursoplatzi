@@ -14,30 +14,39 @@ namespace CoreEscuela
 
         }
 
-        public (List<ObjetoEscuelaBase>, int) GetObjetosEscuela(
+        public List<ObjetoEscuelaBase> GetObjetosEscuela(
+            out int conteoEvaluaciones,
+            out int conteoCursos,
+            out int conteoAsignaturas,
+            out int conteoAlumnos,
             bool traeEvaluaciones = true,
             bool traeAlumnos = true,
             bool traeAsignaturas = true,
-            bool traeCursos = true)
+            bool traeCursos = true
+            )
         {
-            int conteoEvaluaciones = 0;
+            conteoEvaluaciones = conteoCursos = conteoAsignaturas = conteoAlumnos = 0;
             var listaObj = new List<ObjetoEscuelaBase>();
             listaObj.Add(Escuela);
 
             if (traeCursos)
             {
                 listaObj.AddRange(Escuela.Cursos);
+                conteoCursos = Escuela.Cursos.Count;
             }
+
 
             foreach (var curso in Escuela.Cursos)
             {
                 if (traeAsignaturas)
                 {
                     listaObj.AddRange(curso.Asignaturas);
+                    conteoAsignaturas+=curso.Asignaturas.Count;
                 }
                 if (traeAlumnos)
                 {
                     listaObj.AddRange(curso.Alumnos);
+                    conteoAlumnos+=curso.Alumnos.Count;
                 }
 
                 if (traeEvaluaciones)
@@ -45,13 +54,13 @@ namespace CoreEscuela
                     foreach (var alumno in curso.Alumnos)
                     {
                         listaObj.AddRange(alumno.Evaluaciones);
-                        conteoEvaluaciones+=alumno.Evaluaciones.Count();
+                        conteoEvaluaciones += alumno.Evaluaciones.Count;
                     }
                 }
             }
 
-            return (listaObj, conteoEvaluaciones);
-        }
+            return listaObj;
+        }        
         public void Inicializar()
         {
             Escuela = new Escuela("Platzi Academy", 2012, tipo: TiposEscuela.PreEscolar, ciudad: "Bogota");

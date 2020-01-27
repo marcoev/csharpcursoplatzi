@@ -16,11 +16,12 @@ namespace Etapa1
             engine.Inicializar();
             ImprimirCursosEscuela(engine.Escuela);
 
-            var listaObjetos = engine.GetObjetosEscuela(traeEvaluaciones:true);
-            // var listaILugar = from obj in listaObjetos
-            //                     where obj is ILugar
-            //                   select (ILugar) obj;
-            //engine.Escuela.LimpiarLugar();
+            var listaObjetos = engine.GetObjetosEscuela(
+                out int conteoEvaluaciones,
+                out int conteoCursos,
+                out int conteoAsignaturas,
+                out int conteoAlumnos
+            );
         }
 
         /// <SUMMARY>
