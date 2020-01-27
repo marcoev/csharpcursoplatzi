@@ -14,22 +14,40 @@ namespace CoreEscuela
 
         }
 
-        public List<ObjetoEscuelaBase> GetObjetosEscuela()
+        public List<ObjetoEscuelaBase> GetObjetosEscuela(
+            bool traeEvaluaciones = true,
+            bool traeAlumnos = true,
+            bool traeAsignaturas = true,
+            bool traeCursos = true)
         {
             var listaObj = new List<ObjetoEscuelaBase>();
             listaObj.Add(Escuela);
-            listaObj.AddRange(Escuela.Cursos);
-            
+
+            if (traeCursos)
+            {
+                listaObj.AddRange(Escuela.Cursos);
+            }
+
             foreach (var curso in Escuela.Cursos)
             {
-                listaObj.AddRange(curso.Asignaturas);
-                listaObj.AddRange(curso.Alumnos);
-
-                foreach (var alumno in curso.Alumnos)
+                if (traeAsignaturas)
                 {
-                    listaObj.AddRange(alumno.Evaluaciones);
+                    listaObj.AddRange(curso.Asignaturas);
+                }
+                if (traeAlumnos)
+                {
+                    listaObj.AddRange(curso.Alumnos);
+                }
+
+                if (traeEvaluaciones)
+                {
+                    foreach (var alumno in curso.Alumnos)
+                    {
+                        listaObj.AddRange(alumno.Evaluaciones);
+                    }
                 }
             }
+
 
             return listaObj;
         }
@@ -44,7 +62,25 @@ namespace CoreEscuela
             CargarEvaluaciones();
 
         }
+        public Double GetCalificacionAleatoria(Double minimum = 0.0, Double maximum = 5.0)
+        {
+            Random random = new Random();
+            return random.NextDouble() * (maximum - minimum) + minimum;
+        }
+        private List<Alumno> GenerarAlumnosAlAzar(int cantidad)
+        {
+            string[] nombre1 = { "Alba", "Felipe", "Eusebio", "Farid", "Marco", "Alvaro", "Donald" };
+            string[] apellido1 = { "Ruiz", "Sarmiento", "Uribe", "Esparza", "Trump", "Toledo", "Villa" };
+            string[] nombre2 = { "Fredo", "Beto", "Rick", "Murty", "Silvana", "Teodoro", "" };
 
+            var listaAlumno = from n1 in nombre1
+                              from n2 in nombre2
+                              from a1 in apellido1
+                              select new Alumno { Nombre = $"{n1} {n2} {a1}" };
+
+            return listaAlumno.OrderBy((al) => al.UniqueId).Take(cantidad).ToList();
+        }
+        #region Metodos de carga
         private void CargarEvaluaciones()
         {
             string[] exams = { "Parcial 1", "Parcial 2", "Parcial 3", "Examen final", "Examen regularizacion" };
@@ -73,12 +109,6 @@ namespace CoreEscuela
 
             }
         }
-
-        public Double GetCalificacionAleatoria(Double minimum = 0.0, Double maximum = 5.0)
-        {
-            Random random = new Random();
-            return random.NextDouble() * (maximum - minimum) + minimum;
-        }
         private void CargarAsignaturas()
         {
             foreach (var curso in Escuela.Cursos)
@@ -92,21 +122,6 @@ namespace CoreEscuela
                 curso.Asignaturas = listaAsignaturas;
             }
         }
-
-        private List<Alumno> GenerarAlumnosAlAzar(int cantidad)
-        {
-            string[] nombre1 = { "Alba", "Felipe", "Eusebio", "Farid", "Marco", "Alvaro", "Donald" };
-            string[] apellido1 = { "Ruiz", "Sarmiento", "Uribe", "Esparza", "Trump", "Toledo", "Villa" };
-            string[] nombre2 = { "Fredo", "Beto", "Rick", "Murty", "Silvana", "Teodoro", "" };
-
-            var listaAlumno = from n1 in nombre1
-                              from n2 in nombre2
-                              from a1 in apellido1
-                              select new Alumno { Nombre = $"{n1} {n2} {a1}" };
-
-            return listaAlumno.OrderBy((al) => al.UniqueId).Take(cantidad).ToList();
-        }
-
         private void CargarCursos()
         {
             Escuela.Cursos = new List<Curso>{
@@ -124,6 +139,7 @@ namespace CoreEscuela
                 curso.Alumnos = GenerarAlumnosAlAzar(cantidadRandom);
             }
         }
+        #endregion
     }
 
 }
