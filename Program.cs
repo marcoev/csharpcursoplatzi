@@ -15,18 +15,7 @@ namespace Etapa1
             engine.Inicializar();
             ImprimirCursosEscuela(engine.Escuela);
 
-            Printer.WriteTitle("Pruebas de polimorfismo");
-            var alumnoTest = new Alumno{Nombre="Marco Esparza"};
-            ObjetoEscuelaBase ob = alumnoTest;
-            Printer.WriteTitle("Alumno");
-            WriteLine($"Alumno: {alumnoTest.Nombre}");
-            WriteLine($"Alumno: {alumnoTest.UniqueId}");
-            WriteLine($"Alumno: {alumnoTest.GetType()}");
-            Printer.WriteTitle("ObjetoEscuela");
-            WriteLine($"Alumno: {ob.Nombre}");
-            WriteLine($"Alumno: {ob.UniqueId}");
-            WriteLine($"Alumno: {ob.GetType()}");
-
+            var listaObjetos = engine.GetObjetosEscuela();
         }
 
         /// <SUMMARY>
