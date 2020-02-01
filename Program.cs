@@ -15,6 +15,31 @@ namespace Etapa1
             var engine = new EscuelaEngine();
             engine.Inicializar();
             ImprimirCursosEscuela(engine.Escuela);
+
+            Dictionary<int, string> diccionario = new Dictionary<int, string>();
+
+            diccionario.Add(12, "Juan K");
+            diccionario.Add(13, "Lorem Ipsum");
+
+            foreach (var keyValPair in diccionario)
+            {
+                WriteLine($"Key: {keyValPair.Key} Valor: {keyValPair.Value}");
+            }
+
+            Printer.WriteTitle("Acceso a diccionario");
+            WriteLine(diccionario[13]);
+            diccionario[0] = "Pekerman";
+            WriteLine(diccionario[0]);
+            Printer.WriteTitle("Otro Diccionario");
+            var dicc = new Dictionary<string, string>();
+            // El resultado de la siguiente instruccion es que crea la llave si no existe, o la modifica
+            dicc["luna"] = "Cuerpo celeste que gira alrededor de la tierra";
+            WriteLine(dicc["luna"]);
+            //La siguiente instruccion es valida ya que modifica el valor de la llave
+            dicc["luna"] = "La protagonista de soy luna";
+            WriteLine(dicc["luna"]);
+            //en la siguiente instruccion da como resultado una excepcion, ya que esta intentando crear una llave que ya existe
+            dicc.Add("luna","Otro valor de luna");
         }
 
         /// <SUMMARY>
