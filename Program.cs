@@ -28,7 +28,7 @@ namespace Etapa1
 
             Printer.WriteTitle("Acceso a diccionario");
             var dic = engine.GetDiccionarioObjetos();
-             engine.ImprimirDiccionario(dic);
+             engine.ImprimirDiccionario(dic, true);
         }
 
         /// <SUMMARY>

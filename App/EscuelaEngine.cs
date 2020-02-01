@@ -100,17 +100,28 @@ namespace CoreEscuela
                 
                 foreach (var val in obj.Value)
                 {
-                    if (imprEval || !(val is Evaluacion)){
-                        if (val is Escuela)
+                    switch (obj.Key)
+                    {
+                        case LlaveDiccionario.Evaluacion:
+                            if (imprEval) {
+                                Console.WriteLine("Evaluacion: "+val);
+                            }
+                            break;
+                        case LlaveDiccionario.Escuela:
                             Console.WriteLine("Escuela: "+val);
-                        else if (val is Alumno)
-                            Console.WriteLine("Alumno: "+val.Nombre);
-                        else if (val is Curso)
-                            Console.WriteLine("Curso: "+val.Nombre);
-                        else if (val is Asignatura)
-                            Console.WriteLine("Asignatura: "+val.Nombre);
-                        else
-                            Console.WriteLine("Evaluacion: "+val);                    
+                            break;
+                        case LlaveDiccionario.Alumno:
+                            Console.WriteLine("Alumno: "+val);
+                            break;
+                        case LlaveDiccionario.Curso:
+                            Console.WriteLine("Curso: "+val);
+                            break;
+                        case LlaveDiccionario.Asignatura:
+                            Console.WriteLine("Asignatura: "+val);
+                            break;
+                        default:
+                            Console.WriteLine(val);
+                            break;
                     }
                 }
             }
