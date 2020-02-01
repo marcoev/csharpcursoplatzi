@@ -103,9 +103,8 @@ namespace CoreEscuela
                     switch (obj.Key)
                     {
                         case LlaveDiccionario.Evaluacion:
-                            if (imprEval) {
+                            if (imprEval)
                                 Console.WriteLine("Evaluacion: "+val);
-                            }
                             break;
                         case LlaveDiccionario.Escuela:
                             Console.WriteLine("Escuela: "+val);
@@ -114,7 +113,7 @@ namespace CoreEscuela
                             Console.WriteLine("Alumno: "+val);
                             break;
                         case LlaveDiccionario.Curso:
-                            Console.WriteLine("Curso: "+val);
+                            Console.WriteLine("Curso: "+val+", Alumnos: "+((Curso)val).Alumnos.Count.ToString());
                             break;
                         case LlaveDiccionario.Asignatura:
                             Console.WriteLine("Asignatura: "+val);
@@ -183,7 +182,7 @@ namespace CoreEscuela
                             {
                                 Alumno = alumno,
                                 Asignatura = asignatura,
-                                Calificacion = (float)(5 * random.NextDouble()),
+                                Calificacion = MathF.Round((float)(5 * random.NextDouble()),2),
                                 Nombre = $"{asignatura.Nombre} - {exams[i]}"
                             };
                             alumno.Evaluaciones.Add(ev);
@@ -201,7 +200,7 @@ namespace CoreEscuela
                     new Asignatura{Nombre="Matemáticas"},
                     new Asignatura{Nombre="Educación Física"},
                     new Asignatura{Nombre="Castellano"},
-                    new Asignatura{Nombre="Ciencas Naturales"}
+                    new Asignatura{Nombre="Ciencias Naturales"}
                 };
                 curso.Asignaturas = listaAsignaturas;
             }

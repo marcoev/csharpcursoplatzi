@@ -35,11 +35,8 @@ namespace Etapa1
         /// Comentarios del metodo
         private static void ImprimirCursosEscuela(Escuela escuela)
         {
-            //Printer.DibujarLinea();
             Printer.WriteTitle("Cursos de la escuela");
-            //Printer.DibujarLinea(caracter:'*');
 
-            // if (escuela != null && escuela.Cursos != null)
             if (escuela?.Cursos != null)
             {
                 foreach (var curso in escuela.Cursos)
