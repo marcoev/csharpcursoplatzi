@@ -12,6 +12,14 @@ namespace Etapa1
     {
         static void Main(string[] args)
         {
+            //Las siguientes dos instrucciones asignan un delegado al evento de ProcessExit que es cuando
+            //termina la ejecución del sistema, si no se remueve alguno de los delegados, el evento será
+            //ejecutado tantas veces como delegados tenga asignados, en este ejemplo serian 2
+            AppDomain.CurrentDomain.ProcessExit += AccionDelEvento;
+            AppDomain.CurrentDomain.ProcessExit += (o, s) => Printer.WriteTitle("Terminando la ejecución 2");
+            //La siguiente instrucción remueve el delegado al evento, removiendo solo se ejecutaria 1
+            AppDomain.CurrentDomain.ProcessExit -= AccionDelEvento;
+            
             var engine = new EscuelaEngine();
             engine.Inicializar();
             ImprimirCursosEscuela(engine.Escuela);
@@ -29,6 +37,11 @@ namespace Etapa1
             Printer.WriteTitle("Acceso a diccionario");
             var dic = engine.GetDiccionarioObjetos();
              engine.ImprimirDiccionario(dic, true);
+        }
+
+        private static void AccionDelEvento(object sender, EventArgs e)
+        {
+            Printer.WriteTitle("Terminando la ejecución");
         }
 
         /// <SUMMARY>
