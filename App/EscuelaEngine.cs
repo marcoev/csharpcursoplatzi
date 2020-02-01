@@ -93,9 +93,10 @@ namespace CoreEscuela
             return random.NextDouble() * (maximum - minimum) + minimum;
         }
         public Dictionary<string, IEnumerable<ObjetoEscuelaBase>> GetDiccionarioObjetos(){
+            const string CURSOS = "Cursos";
             var diccionario = new Dictionary<string, IEnumerable<ObjetoEscuelaBase>>();
             diccionario.Add("Escuela", new[] {Escuela});
-            diccionario.Add("Cursos", Escuela.Cursos);
+            diccionario.Add(CURSOS, Escuela.Cursos);
             return diccionario;
 
         }
