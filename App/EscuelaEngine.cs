@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CoreEscuela.Entidades;
+using CoreEscuela.Util;
 
 namespace CoreEscuela
 {
@@ -91,6 +92,28 @@ namespace CoreEscuela
         {
             Random random = new Random();
             return random.NextDouble() * (maximum - minimum) + minimum;
+        }
+        public void ImprimirDiccionario(Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> dic, bool imprEval = false){
+            foreach (var obj in dic)
+            {
+                Printer.WriteTitle(obj.Key.ToString());
+                
+                foreach (var val in obj.Value)
+                {
+                    if (imprEval || !(val is Evaluacion)){
+                        if (val is Escuela)
+                            Console.WriteLine("Escuela: "+val);
+                        else if (val is Alumno)
+                            Console.WriteLine("Alumno: "+val.Nombre);
+                        else if (val is Curso)
+                            Console.WriteLine("Curso: "+val.Nombre);
+                        else if (val is Asignatura)
+                            Console.WriteLine("Asignatura: "+val.Nombre);
+                        else
+                            Console.WriteLine("Evaluacion: "+val);                    
+                    }
+                }
+            }
         }
         public Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> GetDiccionarioObjetos(){
             var diccionario = new Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>>();
