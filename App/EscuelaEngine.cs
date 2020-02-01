@@ -92,12 +92,11 @@ namespace CoreEscuela
             Random random = new Random();
             return random.NextDouble() * (maximum - minimum) + minimum;
         }
-        public Dictionary<string, IEnumerable<ObjetoEscuelaBase>> GetDiccionarioObjetos(){
-            var diccionario = new Dictionary<string, IEnumerable<ObjetoEscuelaBase>>();
-            diccionario.Add(LlavesDiccionario.ESCUELA, new[] {Escuela});
-            diccionario.Add(LlavesDiccionario.CURSOS, Escuela.Cursos);
+        public Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> GetDiccionarioObjetos(){
+            var diccionario = new Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>>();
+            diccionario.Add(LlaveDiccionario.Escuela, new[] {Escuela});
+            diccionario.Add(LlaveDiccionario.Curso, Escuela.Cursos);
             return diccionario;
-
         }
         private List<Alumno> GenerarAlumnosAlAzar(int cantidad)
         {
