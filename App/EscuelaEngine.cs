@@ -94,8 +94,27 @@ namespace CoreEscuela
         }
         public Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> GetDiccionarioObjetos(){
             var diccionario = new Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>>();
+            
             diccionario.Add(LlaveDiccionario.Escuela, new[] {Escuela});
             diccionario.Add(LlaveDiccionario.Curso, Escuela.Cursos);
+
+            var listaTmpEvaluacion = new List<Evaluacion>();
+            var listaTmpAlumno = new List<Alumno>();
+            var listaTmpAsignatura = new List<Asignatura>();
+            foreach (var curso in Escuela.Cursos)
+            {
+                listaTmpAlumno.AddRange(curso.Alumnos);
+                listaTmpAsignatura.AddRange(curso.Asignaturas);                
+
+                foreach (var alumno in curso.Alumnos)
+                {
+                    listaTmpEvaluacion.AddRange(alumno.Evaluaciones);                                    
+                }
+            }
+            diccionario.Add(LlaveDiccionario.Alumno, listaTmpAlumno.Cast<ObjetoEscuelaBase>());
+            diccionario.Add(LlaveDiccionario.Asignatura, listaTmpAsignatura.Cast<ObjetoEscuelaBase>());                
+            diccionario.Add(LlaveDiccionario.Evaluacion, listaTmpEvaluacion.Cast<ObjetoEscuelaBase>());                                    
+
             return diccionario;
         }
         private List<Alumno> GenerarAlumnosAlAzar(int cantidad)
