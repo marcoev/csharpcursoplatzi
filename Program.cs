@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CoreEscuela;
+using CoreEscuela.App;
 using CoreEscuela.Entidades;
 using CoreEscuela.Util;
 using static System.Console;
@@ -37,6 +37,14 @@ namespace Etapa1
             Printer.WriteTitle("Acceso a diccionario");
             var dic = engine.GetDiccionarioObjetos();
              engine.ImprimirDiccionario(dic, true);
+            
+            var rep = new Reporteador(engine.GetDiccionarioObjetos());
+            // var rep = new Reporteador(null);
+            rep.GetListaEvaluacion();
+            var evalList = rep.GetListaEvaluacion();
+            var listaAsig = rep.GetListaAsignatura();
+            var listaEvalPorAsig = rep.GetDiccEvaluacionesPorAsignatura();
+
         }
 
         private static void AccionDelEvento(object sender, EventArgs e)
