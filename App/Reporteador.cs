@@ -66,10 +66,14 @@ namespace CoreEscuela.App
             {
                 //linq solo permite regresar un valor, es por ello que se crea un objeto anonimo el cual contendrá mas de un valor por registro
                 var promedioAlumnos = from eval in asignaturConEvaluacion.Value
-                            group eval by eval.Alumno.UniqueId
+                            group eval by new{ 
+                                eval.Alumno.UniqueId,
+                                eval.Alumno.Nombre
+                            }
                             into grupoEvalAlumno                         
-                            select new {
-                                alumnoID = grupoEvalAlumno.Key,
+                            select new AlumnoPromedio {
+                                alumnoid = grupoEvalAlumno.Key.UniqueId,
+                                alumnoNombre = grupoEvalAlumno.Key.Nombre,
                                 promedio = grupoEvalAlumno.Average( e=>e.Calificacion )
                             };
                 resp.Add(asignaturConEvaluacion.Key, promedioAlumnos);

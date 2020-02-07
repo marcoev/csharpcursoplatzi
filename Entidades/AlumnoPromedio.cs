@@ -4,7 +4,8 @@ using System.Collections.Generic;
 namespace CoreEscuela.Entidades{
     public class AlumnoPromedio
     {
-        public float Promedio;
-        public Alumno alumno;
+        public float promedio;
+        public string alumnoid;
+        public string alumnoNombre;
     }
 }
