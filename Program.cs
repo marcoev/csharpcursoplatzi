@@ -44,6 +44,7 @@ namespace Etapa1
             var evalList = rep.GetListaEvaluacion();
             var listaAsig = rep.GetListaAsignatura();
             var listaEvalPorAsig = rep.GetDiccEvaluacionesPorAsignatura();
+            var listaPromXAsig = rep.GetPromedioAlumnosPorAsignatura();
 
         }
 

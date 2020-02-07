@@ -65,14 +65,14 @@ namespace CoreEscuela.App
             foreach (var asignaturConEvaluacion in diccEvalPorAsig)
             {
                 //linq solo permite regresar un valor, es por ello que se crea un objeto anonimo el cual contendrá mas de un valor por registro
-                var dummy = from eval in asignaturConEvaluacion.Value
+                var promedioAlumnos = from eval in asignaturConEvaluacion.Value
+                            group eval by eval.Alumno.UniqueId
+                            into grupoEvalAlumno                         
                             select new {
-                                eval.Alumno.UniqueId,
-                                AlumnoNombre = eval.Alumno.Nombre,
-                                EvaluacionNombre = eval.Nombre,
-                                eval.Calificacion
-                                };
-
+                                alumnoID = grupoEvalAlumno.Key,
+                                promedio = grupoEvalAlumno.Average( e=>e.Calificacion )
+                            };
+                resp.Add(asignaturConEvaluacion.Key, promedioAlumnos);
             }
 
             return resp;
