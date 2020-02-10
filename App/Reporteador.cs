@@ -26,11 +26,15 @@ namespace CoreEscuela.App
             if (_diccionario.TryGetValue(LlaveDiccionario.Evaluacion, out IEnumerable<ObjetoEscuelaBase> lista)){
                 res = lista.Cast<Evaluacion>();
             }
+            int hola = 0;
+            hola++;
             return res;
         }
         // public IEnumerable<Asignatura> GetListaAsignatura(){
         public IEnumerable<string> GetListaAsignatura(out IEnumerable<Evaluacion> listaEvaluaciones){
             listaEvaluaciones = GetListaEvaluacion();
+
+
             //utilizamos linq para regresar la lista donde la calificacion sea mayor a 3
             // return from Evaluacion ev in listaEvaluaciones
             //     where ev.Calificacion>3.0f
